@@ -1,7 +1,24 @@
-document.addEventListener("DOMContentLoaded", printTeamMemberInfo)
+
+// Generate page content on load
+document.addEventListener("DOMContentLoaded", () => {
+
+    printTeamMemberInfo(buildFlexContainer())
+
+})
+
+
+//Build flex container
+function buildFlexContainer() {
+
+    const container = createDOMobject("div", document.body, "container card-wrapper", "card-wrapper", "")
+    createDOMobject("h1", container, "container-header", "", "Our Team")
+    return container
+
+}
+
 
 // Print TeamMember info to DOM
-function printTeamMemberInfo() {
+function printTeamMemberInfo(container) {
 
     const teamMember = [
         {
@@ -41,7 +58,7 @@ function printTeamMemberInfo() {
         const member = teamMember[i]
         const memberNumber = i + 1
 
-        const memberCard = createDOMobject("div", document.body, "member-card", "member-card-" + memberNumber, "")
+        const memberCard = createDOMobject("div", container, "member-card", "member-card-" + memberNumber, "")
         createDOMobject("p", memberCard, "member-info", "member-" + memberNumber, member.name)
         createDOMobject("p", memberCard, "member-info", "member-" + memberNumber, member.position)
         createDOMobject("p", memberCard, "member-info", "member-" + memberNumber, member.portrait)

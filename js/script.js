@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", printTeamMember)
+document.addEventListener("DOMContentLoaded", printTeamMemberInfo)
 
 // Print TeamMember info to DOM
 function printTeamMemberInfo() {

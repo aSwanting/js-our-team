@@ -31,6 +31,13 @@ const teamMember = [
     }
 ]
 
+for (let member of teamMember) {
+    console.log("")
+    console.log("Team Member Info:")
+    console.log("   Name: " + member.name)
+    console.log("   Position: " + member.position)
+    console.log("   img: " + member.portrait)
+}
 
-console.log(teamMember)
+
 // debugger

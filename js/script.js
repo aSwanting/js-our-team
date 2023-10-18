@@ -10,11 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
 //Build flex container
 function buildFlexContainer() {
 
-    const container = createDOMobject("div", document.body, "container card-wrapper", "card-wrapper", "")
-    createDOMobject("h1", container, "container-header", "", "Our Team")
+    const container = createDOMobjectPrepend("div", document.body, "container card-wrapper", "card-wrapper", "")
+    createDOMobjectAppend("h1", container, "container-header", "", "Our Team")
     return container
 
 }
+
 
 
 // Print TeamMember info to DOM
@@ -24,32 +25,32 @@ function printTeamMemberInfo(container) {
         {
             name: "Wayne Barnett",
             position: "Founder & CEO",
-            portrait: "wayne-barnett-founder-ceo.jpg"
+            portrait: "./img/wayne-barnett-founder-ceo.jpg"
         },
         {
             name: "Angela Caroll",
             position: "Chief Editor",
-            portrait: "angela-caroll-chief-editor.jpg"
+            portrait: "./img/angela-caroll-chief-editor.jpg"
         },
         {
             name: "Walter Gordon",
             position: "Office Manager",
-            portrait: "walter-gordon-office-manager.jpg"
+            portrait: "./img/walter-gordon-office-manager.jpg"
         },
         {
             name: "Angela Lopez",
             position: "Social Media Manager",
-            portrait: "angela-lopez-social-media-manager.jpg"
+            portrait: "./img/angela-lopez-social-media-manager.jpg"
         },
         {
             name: "Scott Estrada",
             position: "Developer",
-            portrait: "scott-estrada-developer.jpg"
+            portrait: "./img/scott-estrada-developer.jpg"
         },
         {
             name: "Barbara Ramos",
             position: "Graphic Designer",
-            portrait: "barbara-ramos-graphic-designer.jpg"
+            portrait: "./img/barbara-ramos-graphic-designer.jpg"
         }
     ]
 
@@ -58,21 +59,33 @@ function printTeamMemberInfo(container) {
         const member = teamMember[i]
         const memberNumber = i + 1
 
-        const memberCard = createDOMobject("div", container, "member-card", "member-card-" + memberNumber, "")
-        createDOMobject("p", memberCard, "member-info", "member-" + memberNumber, member.name)
-        createDOMobject("p", memberCard, "member-info", "member-" + memberNumber, member.position)
-        createDOMobject("p", memberCard, "member-info", "member-" + memberNumber, member.portrait)
+        const memberCard = createDOMobjectAppend("div", container, "member-card", "member-card-" + memberNumber, "")
+        createDOMobjectAppend("img", memberCard, "member-portrait", "member-" + memberNumber,).src = member.portrait
+        createDOMobjectAppend("p", memberCard, "member-name", "member-" + memberNumber, member.name)
+        createDOMobjectAppend("p", memberCard, "member-position", "member-" + memberNumber, member.position)
 
     }
 
 }
 
 
-// Function to create DOM element
-function createDOMobject(type, location, className, id, inner) {
+// Function to create and append DOM element
+function createDOMobjectAppend(type, location, className, id, inner) {
 
     const DOMobject = document.createElement(type)
     location.append(DOMobject)
+    DOMobject.className = className
+    DOMobject.id = id
+    DOMobject.innerHTML = inner
+    return DOMobject
+
+}
+
+// Function to create and prepend DOM element
+function createDOMobjectPrepend(type, location, className, id, inner) {
+
+    const DOMobject = document.createElement(type)
+    location.prepend(DOMobject)
     DOMobject.className = className
     DOMobject.id = id
     DOMobject.innerHTML = inner
